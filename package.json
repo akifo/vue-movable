@@ -1,0 +1,43 @@
+{
+  "name": "vue-movable",
+  "version": "0.0.1",
+  "description": "",
+  "main": "dist/vue-movable.min.js",
+  "scripts": {
+    "dev": "rollup -c -w",
+    "build": "npm run build:dev && npm run build:prod",
+    "build:dev": "NODE_ENV=development rollup -c",
+    "build:prod": "NODE_ENV=production rollup -c",
+    "deploy": "npm run build && git add . && git commit -m \"build for release\" && npm version patch && git push origin master && git push origin --tags && npm publish"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akifo/vue-movable.git"
+  },
+  "author": "Akiho Nagao",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/akifo/vue-movable/issues"
+  },
+  "homepage": "https://github.com/akifo/vue-movable#readme",
+  "devDependencies": {
+    "babel-preset-es2015-rollup": "^3.0.0",
+    "eslint": "^3.19.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.3.0",
+    "eslint-plugin-node": "^4.2.2",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "rollup": "^0.41.6",
+    "rollup-plugin-babel": "^2.7.1",
+    "rollup-plugin-node-resolve": "^3.0.0",
+    "rollup-plugin-uglify": "^2.0.1",
+    "rollup-watch": "^3.2.2",
+    "vue": "^2.3.3"
+  },
+  "files": [
+    "dist",
+    "src",
+    "README.md"
+  ]
+}

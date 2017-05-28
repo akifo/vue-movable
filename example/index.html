@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>vue-movable</title>
+  <style type="text/css">
+    .box {
+      width: 100px;
+      height: 100px;
+      border: 1px solid #ddd;
+
+      cursor: move;
+      position: absolute;
+      z-index: 1000;
+    }
+    .yellow {
+      background-color: yellow;
+    }
+    .blue {
+      background-color: blue;
+    }
+    .red {
+      background-color: red;
+    }
+
+    .drag {
+      z-index: 1001;
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+  <div class="box yellow" v-movable></div>
+  <div class="box blue" v-movable></div>
+  <div class="box red" v-movable></div>
+</div>
+<script src="https://cdn.css.net/libs/vue/2.3.3/vue.js"></script>
+<script src="../dist/vue-movable.js"></script>
+<script>
+  var app = document.querySelector('#app')
+  new Vue({
+    el: app,
+    data: function () {
+      return {busy: false}
+    },
+    methods: {
+    }
+  })
+</script>
+</body>
+</html>
+
