@@ -1,0 +1,5 @@
+.drag {
+  cursor: move;
+  z-index: 1000;
+}
+
