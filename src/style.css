@@ -1,4 +1,8 @@
-.drag {
+body {
+  min-height: 100vh;
+}
+
+.v-movable-drag {
   cursor: move;
   z-index: 1000;
 }

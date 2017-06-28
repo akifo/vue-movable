@@ -1,60 +1,55 @@
-export default {
-  bind (el, binding, vnode) {
-    el.addEventListener('mousedown', mdown, false)
-    el.addEventListener('touchstart', mdown, false)
-  },
-  inserted (el) {
-  }
-}
+import './style.css'
+import getTransform from './util/get-transform'
 
 let x
 let y
+let translate3dXYZ
+let targetElement
 
-const mdown = function (e) {
-  this.classList.add('drag')
+export default {
+  bind (el, binding, vnode) {
+    el.addEventListener('mousedown', mouseDown, false)
+    el.addEventListener('touchstart', mouseDown, false)
+  }
+}
 
-  let event
+const mouseDown = (e) => {
+  if (!e.target) return
+
+  let event = e
   if (e.type === 'mousedown') {
     event = e
   } else {
     event = e.changedTouches[0]
   }
 
-  x = event.pageX - this.offsetLeft
-  y = event.pageY - this.offsetTop
+  targetElement = event.target
 
-  document.body.addEventListener('mousemove', mmove, false)
-  document.body.addEventListener('touchmove', mmove, false)
+  event.target.classList.add('v-movable-drag')
+
+  x = event.pageX
+  y = event.pageY
+
+  translate3dXYZ = getTransform(e.target.style.transform)
+
+  document.addEventListener('mouseleave', mouseUp, false)
+  document.body.addEventListener('mousemove', mouseMove, false)
+  document.body.addEventListener('touchmove', mouseMove, false)
+  document.body.addEventListener('mouseup', mouseUp, false)
+  document.body.addEventListener('touchend', mouseUp, false)
 }
 
-function mmove (e) {
-  var drag = document.getElementsByClassName('drag')[0]
-
-  let event
-  if (e.type === 'mousemove') {
-    event = e
-  } else {
-    event = e.changedTouches[0]
-  }
-
-  e.preventDefault()
-
-  drag.style.top = event.pageY - y + 'px'
-  drag.style.left = event.pageX - x + 'px'
-
-  drag.addEventListener('mouseup', mup, false)
-  document.body.addEventListener('mouseleave', mup, false)
-  drag.addEventListener('touchend', mup, false)
-  document.body.addEventListener('touchleave', mup, false)
+const mouseMove = (e) => {
+  const mx = e.pageX - x + translate3dXYZ[0]
+  const my = e.pageY - y + translate3dXYZ[1]
+  targetElement.style.transform = `translate3d(${mx}px, ${my}px, 0)`
 }
 
-function mup (e) {
-  var drag = document.getElementsByClassName('drag')[0]
-
-  document.body.removeEventListener('mousemove', mmove, false)
-  drag.removeEventListener('mouseup', mup, false)
-  document.body.removeEventListener('touchmove', mmove, false)
-  drag.removeEventListener('touchend', mup, false)
-
-  drag.classList.remove('drag')
+const mouseUp = (e) => {
+  document.removeEventListener('mouseleave', mouseUp, false)
+  document.body.removeEventListener('mousemove', mouseMove, false)
+  document.body.removeEventListener('touchmove', mouseMove, false)
+  document.body.removeEventListener('mouseup', mouseUp, false)
+  document.body.removeEventListener('touchend', mouseUp, false)
+  if (e.target && e.target.classList) e.target.classList.remove('v-movable-drag')
 }
