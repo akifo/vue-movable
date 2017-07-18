@@ -1,5 +1,7 @@
-extends: 'standard'
+parser: babel-eslint
+extends: vue
 globals:
   Vue: true
 rules:
+  no-dynamic-import: 0
   no-new: 0
