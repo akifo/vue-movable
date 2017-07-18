@@ -3,50 +3,21 @@
 <head>
   <meta charset="utf-8">
   <title>vue-movable</title>
-  <style type="text/css">
-    .box {
-      width: 100px;
-      height: 100px;
-      border: 1px solid #ddd;
-      position: absolute;
-      top: 0;
-    }
-    .yellow {
-      background-color: yellow;
-      left: 0;
-    }
-    .blue {
-      background-color: blue;
-      left: 200px;
-    }
-    .red {
-      background-color: red;
-      left: 400px;
-    }
-  </style>
+
+  <link rel="stylesheet" href="./style.css">
+
 </head>
 <body>
 
-<div id="app">
-  <div class="box yellow" v-movable></div>
-  <div class="box blue" v-movable></div>
-  <div class="box red" v-movable></div>
-</div>
+  <h1>Vue-Movable</h1>
+  <p>vue-movable is a Vue directive that enable to move element.</p>
 
-<script src="https://cdn.css.net/libs/vue/2.3.3/vue.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vue-movable@latest/dist/vue-movable.min.js"></script>
-<!-- <script src="../dist/vue-movable.js"></script> -->
-<script>
-  var app = document.querySelector('#app')
-  new Vue({
-    el: app,
-    data: function () {
-      return {busy: false}
-    },
-    methods: {
-    }
-  })
-</script>
+  <h2>Languages</h2>
+  <ul>
+    <li><a href="./en/">English</a></li>
+    <li><a href="./ja/">Japanese</a></li>
+  </ul>
+
 
 </body>
 </html>
