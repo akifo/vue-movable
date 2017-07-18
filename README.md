@@ -3,6 +3,9 @@
 **Don't use!! It's still dev**  
 vue-movable is a Vue directive that enable to move element.
 
+[DEMO](https://akifo.github.io/vue-movable/)  
+[Usage](#usage)  
+
 ## Install
 
 ### Donwload Manually

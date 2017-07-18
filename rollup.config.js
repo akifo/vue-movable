@@ -1,7 +1,13 @@
-import autoprefixer from 'autoprefixer'
-import babel from 'rollup-plugin-babel'
+// Rollup plugins
 import uglify from 'rollup-plugin-uglify'
+import vue from 'rollup-plugin-vue'
 import postcss from 'rollup-plugin-postcss'
+
+// PostCSS plugins
+import cssnano from 'cssnano'
+import nested from 'postcss-nested'
+import cssnext from 'postcss-cssnext'
+import sugarss from 'sugarss'
 
 const builds = {
   'development': {
@@ -20,18 +26,23 @@ function genConfig (opts) {
     entry: './src/index.js',
     dest: opts.dest,
     plugins: [
+      vue({
+        compileTemplate: true
+      }),
       postcss({
         plugins: [
-          autoprefixer()
+          nested(),
+          cssnext({
+            warnForDuplicates: false
+          }),
+          cssnano()
         ],
-        extensions: ['.css']
-      }),
-      babel({
-        exclude: 'node_modules/**',
-        presets: ['es2015-rollup']
+        extensions: ['.sss'],
+        parser: sugarss
       })
     ].concat(opts.plugins || []),
     format: 'umd',
+    // format: 'es',
     moduleName: 'vueMobable'
   }
   return config

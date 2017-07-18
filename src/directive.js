@@ -1,5 +1,10 @@
-import './style.css'
 import getTransform from './util/get-transform'
+import closest from './util/closest'
+
+const V_MOVABLE_CLASS = 'v-movable'
+const V_MOVABLE_BOX_CLASS = 'v-movable-box'
+const V_MOVABLE_CONTROLLER_CLASS = 'v-movable-controller'
+const V_MOVABLE_DRAGGING_CLASS = 'v-movable-dragging'
 
 let x
 let y
@@ -10,10 +15,12 @@ export default {
   bind (el, binding, vnode) {
     el.addEventListener('mousedown', mouseDown, false)
     el.addEventListener('touchstart', mouseDown, false)
+    if (binding.name === 'movable') el.classList.add(V_MOVABLE_CLASS)
+    else if (binding.name === 'movable-controller') el.classList.add(V_MOVABLE_CONTROLLER_CLASS)
   }
 }
 
-const mouseDown = (e) => {
+const mouseDown = (e, name) => {
   if (!e.target) return
 
   let event = e
@@ -23,14 +30,18 @@ const mouseDown = (e) => {
     event = e.changedTouches[0]
   }
 
-  targetElement = event.target
+  if (event.target.classList.contains(V_MOVABLE_CLASS)) {
+    targetElement = event.target
+  } else {
+    targetElement = closest(event.target, `.${V_MOVABLE_BOX_CLASS}`)
+  }
 
-  event.target.classList.add('v-movable-drag')
+  targetElement.classList.add(V_MOVABLE_DRAGGING_CLASS)
 
   x = event.pageX
   y = event.pageY
 
-  translate3dXYZ = getTransform(e.target.style.transform)
+  translate3dXYZ = getTransform(targetElement.style.transform)
 
   document.addEventListener('mouseleave', mouseUp, false)
   document.body.addEventListener('mousemove', mouseMove, false)
@@ -51,5 +62,5 @@ const mouseUp = (e) => {
   document.body.removeEventListener('touchmove', mouseMove, false)
   document.body.removeEventListener('mouseup', mouseUp, false)
   document.body.removeEventListener('touchend', mouseUp, false)
-  if (e.target && e.target.classList) e.target.classList.remove('v-movable-drag')
+  if (targetElement && targetElement.classList) targetElement.classList.remove(V_MOVABLE_DRAGGING_CLASS)
 }
