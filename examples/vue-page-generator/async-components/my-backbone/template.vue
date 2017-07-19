@@ -5,9 +5,13 @@
 </template>
 
 <script>
+import AsyncCompMixin from '../mixin'
+
 export default {
 
-  name: 'MyBackbone'
+  name: 'MyBackbone',
+
+  mixins: [AsyncCompMixin]
 
 }
 </script>

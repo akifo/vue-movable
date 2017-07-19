@@ -1,8 +1,9 @@
 <template>
   <div id="edit-modal-index">
     <transition-group name="fade">
-      <EditColor v-show="isActiveModal('EditColor')" :key="'EditColor'" />
-      <EditDesign v-show="isActiveModal('EditDesign')" :key="'EditDesign'" />
+      <component v-for="(item, index) in activeModals" :is="item" v-show="isActiveModal(item)" :key="index"/>
+      <!-- <EditColor v-show="isActiveModal('EditColor')" :key="'EditColor'" /> -->
+      <!-- <EditDesign v-show="isActiveModal('EditDesign')" :key="'EditDesign'" /> -->
     </transition-group>
   </div>
 </template>

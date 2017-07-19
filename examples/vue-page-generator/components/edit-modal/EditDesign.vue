@@ -3,11 +3,7 @@
     <div v-movable-controller></div>
     <div class="v-movable-content">
       <ul>
-        <li @click="selectDesign('my-vue')">Vue.js</li>
-        <li @click="selectDesign('my-riot')">Riot</li>
-        <li @click="selectDesign('my-react')">React</li>
-        <li @click="selectDesign('my-angular')">Angular</li>
-        <li @click="selectDesign('my-backbone')">Backbone</li>
+        <li v-for="item in designList" @click="selectDesign(item)">{{item}}</li>
       </ul>
     </div>
   </MovableBox>
@@ -15,9 +11,17 @@
 
 <script>
 import { mapMutations } from 'vuex'
+import designList from '../../assets/design-list'
+
 export default {
 
   name: 'EditDesign',
+
+  data () {
+    return {
+      designList: designList
+    }
+  },
 
   methods: {
     ...mapMutations([

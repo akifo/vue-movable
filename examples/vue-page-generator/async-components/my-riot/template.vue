@@ -5,9 +5,13 @@
 </template>
 
 <script>
+import AsyncCompMixin from '../mixin'
+
 export default {
 
-  name: 'MyRiot'
+  name: 'MyRiot',
+
+  mixins: [AsyncCompMixin]
 
 }
 </script>

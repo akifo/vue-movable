@@ -1,10 +1,10 @@
 <template>
-  <div class="vue" :style="styleObject1">
+  <div class="vue" :style="styleObjects['0001']">
 
     <div id="hero">
       <div class="inner">
         <div class="left">
-          <img class="hero-logo" src="../assets/vue-logo.png">
+          <img class="hero-logo" src="../../assets/vue-logo.png">
         </div><div class="right">
           <h2 class="vue">Vue.js</h2>
           <h1>
@@ -22,17 +22,17 @@
       <div class="inner">
         <div class="point">
           <h2>Approachable</h2>
-          <p :style="styleObject2">Already know HTML, CSS and JavaScript? Read the guide and start building things in no time!</p>
+          <p :style="styleObjects['0002']">Already know HTML, CSS and JavaScript? Read the guide and start building things in no time!</p>
         </div>
 
         <div class="point">
           <h2>Versatile</h2>
-          <p :style="styleObject2">Simple, minimal core with an incrementally adoptable stack that can handle apps of any scale.</p>
+          <p :style="styleObjects['0002']">Simple, minimal core with an incrementally adoptable stack that can handle apps of any scale.</p>
         </div>
 
         <div class="point">
           <h2>Performant</h2>
-          <p :style="styleObject2">
+          <p :style="styleObjects['0002']">
             20kb min+gzip Runtime<br>
             Blazing Fast Virtual DOM<br>
             Minimal Optimization Efforts
@@ -45,35 +45,13 @@
 </template>
 
 <script>
-import vm from '../vm'
+import AsyncCompMixin from '../mixin'
 
 export default {
 
   name: 'MyVue',
 
-  model: {
-    prop: 'checked',
-    event: 'change'
-  },
-
-  data () {
-    return {
-      vm: vm.$data
-    }
-  },
-
-  computed: {
-    styleObject1 () {
-      return {
-        backgroundColor: this.vm.colors['bgColor1'].hex
-      }
-    },
-    styleObject2 () {
-      return {
-        color: this.vm.colors['fontColor1'].hex
-      }
-    }
-  }
+  mixins: [AsyncCompMixin]
 
 }
 </script>
