@@ -1,5 +1,5 @@
 <template>
-  <div class="angular">
+  <div class="angular" :style="colorStyle('0001')">
     <h1>Angular</h1>
   </div>
 </template>

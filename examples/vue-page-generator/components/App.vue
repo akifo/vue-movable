@@ -33,7 +33,7 @@ body
   display: flex
   height: 100vh
   .side
-    flex: 0 0 70px
+    flex: 0 0 35px
     z-index: 2
     box-shadow:
       0 6px 10px 0 rgba(0,0,0,0.14),

@@ -1,5 +1,5 @@
 <template>
-  <div class="backbone">
+  <div class="backbone" :style="colorStyle('0001')">
     <h1>BackBone</h1>
   </div>
 </template>

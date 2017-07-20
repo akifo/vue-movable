@@ -6,21 +6,27 @@ export default {
   data () {
     return {
       settings: {},
-      styleObjects: []
+      colors: []
     }
   },
 
   created () {
     import(`./${kebabCase(this.$options.name)}/settings.js`).then(m => {
       this.settings = m.default
-      this.styleObjects = m.default.styleObjects
-      this.selectDesignStyleObjects(this.styleObjects)
+      this.colors = m.default.colors
+      this.selectDesignColors(this.colors)
     })
   },
 
   methods: {
     ...mapMutations([
-      'selectDesignStyleObjects'
-    ])
+      'selectDesignColors'
+    ]),
+    colorStyle (key) {
+      if (!this.colors[key]) return
+      return {
+        [this.colors[key].property]: this.colors[key].hex
+      }
+    }
   }
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="react">
+  <div class="react" :style="colorStyle('0001')">
     this is react design
   </div>
 </template>

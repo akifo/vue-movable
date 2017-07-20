@@ -9,14 +9,6 @@ export default {
 
   name: 'RealTimeView',
 
-  created () {
-  },
-
-  data () {
-    return {
-    }
-  },
-
   computed: {
     ...mapGetters([
       'currentDesign'

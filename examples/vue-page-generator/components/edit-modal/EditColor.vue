@@ -1,16 +1,14 @@
 <template>
-  <MovableBox id="edit-color" class="v-movable-simple">
-    <div v-movable-controller></div>
-    <p>aiueo</p>
-    <!-- <sketch-picker v-model="editColor" v-if="editColor" /> -->
+  <MovableBox id="edit-color" class="v-movable-simple" @close="close" @cancel="cancel">
+    <div v-movable-controller>{{currentDesignColors[value].name}}</div>
+    <sketch-picker :value="editColor" @input="update" />
   </MovableBox>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 import designList from '../../assets/design-list'
 import { Sketch } from 'vue-color'
-import vm from '../../vm'
 
 export default {
 
@@ -20,19 +18,45 @@ export default {
     'sketch-picker': Sketch
   },
 
+  props: {
+    value: {
+      type: String,
+      required: true,
+      default: '999999999'
+    }
+  },
+
   data () {
     return {
-      designList: designList,
-      vm: vm.$data
+      designList: designList
     }
   },
 
   computed: {
     ...mapGetters([
-      'currentDesign'
+      'currentDesign',
+      'currentDesignColors'
     ]),
     editColor () {
-      // return designList[this.currentDesign].colors[vm.currentColor]
+      return {
+        hex: this.currentDesignColors[this.value].hex || '#fff'
+      }
+    }
+  },
+
+  methods: {
+    ...mapMutations([
+      'updateColor'
+    ]),
+    update (val) {
+      this.updateColor({
+        key: this.value,
+        hex: val.hex
+      })
+    },
+    close () {
+    },
+    cancel () {
     }
   }
 

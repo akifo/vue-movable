@@ -1,5 +1,5 @@
 <template>
-  <div class="riot">
+  <div class="riot"  :style="colorStyle('0001')">
     <h1>Riot</h1>
   </div>
 </template>

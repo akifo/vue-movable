@@ -1,18 +1,20 @@
 <template>
-  <div class="vue" :style="styleObjects['0001']">
+  <div class="vue" :style="[colorStyle('0001'), colorStyle('0002')]">
 
     <div id="hero">
       <div class="inner">
         <div class="left">
-          <img class="hero-logo" src="../../assets/vue-logo.png">
-        </div><div class="right">
+          <img class="hero-logo" src="../../assets/vue-logo.png" />
+        </div>
+        <div class="right">
           <h2 class="vue">Vue.js</h2>
-          <h1>
-            The Progressive<br>JavaScript Framework
+          <h1 :style="colorStyle('0003')">
+            The Progressive<br>
+            JavaScript Framework
           </h1>
           <p>
-            <a class="button" href="">GET STARTED</a>
-            <a class="button white" href="https://github.com/vuejs/vue" target="_blank">GITHUB</a>
+            <a class="button" href="" :style="colorStyle('0006')">GET STARTED</a>
+            <a class="button white" href="https://github.com/vuejs/vue" target="_blank" :style="colorStyle('0007')">GITHUB</a>
           </p>
         </div>
       </div>
@@ -21,18 +23,18 @@
     <div id="highlights">
       <div class="inner">
         <div class="point">
-          <h2>Approachable</h2>
-          <p :style="styleObjects['0002']">Already know HTML, CSS and JavaScript? Read the guide and start building things in no time!</p>
+          <h2 :style="colorStyle('0007')">Approachable</h2>
+          <p>Already know HTML, CSS and JavaScript? Read the guide and start building things in no time!</p>
         </div>
 
         <div class="point">
-          <h2>Versatile</h2>
-          <p :style="styleObjects['0002']">Simple, minimal core with an incrementally adoptable stack that can handle apps of any scale.</p>
+          <h2 :style="colorStyle('0007')">Versatile</h2>
+          <p>Simple, minimal core with an incrementally adoptable stack that can handle apps of any scale.</p>
         </div>
 
         <div class="point">
-          <h2>Performant</h2>
-          <p :style="styleObjects['0002']">
+          <h2 :style="colorStyle('0007')">Performant</h2>
+          <p>
             20kb min+gzip Runtime<br>
             Blazing Fast Virtual DOM<br>
             Minimal Optimization Efforts
@@ -57,42 +59,22 @@ export default {
 </script>
 
 <style lang="stylus">
-@import url('https://fonts.googleapis.com/css?family=Dosis|Source+Sans+Pro')
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Roboto Mono')
+@import url('https://fonts.googleapis.com/css?family=Dosis:500&text=Vue.js')
 
-// font faces
-$body-font = 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif
 $logo-font = 'Dosis', 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif
-$code-font = 'Roboto Mono', Monaco, courier, monospace
 
-// font sizes
-$body-font-size = 15px
-$code-font-size = .8em
-
-// colors
-// $light  = #7f8c8d
-$green  = #42b983
-$border = #dddddd
-$codebg = #f8f8f8
-$red = #ff6666
-$info = #1C90F3
-
-$radius = 2px
-$content-padding-top = 30px
-$header-inner-height = 41px
-$heading-padding-vertical = 10px
-$header-height = $header-inner-height + $heading-padding-vertical * 2
-$mobile-header-height = 40px
-$heading-link-padding-top = $header-height + $content-padding-top
-$mobile-heading-link-padding-top = $mobile-header-height + $content-padding-top
-$h2-margin-top = 45px
-$h3-margin-top = 52px
-
+.vue
+  font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif
+  font-size: 15px
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+  margin: 0
 
 #hero
-  padding: $space 40px
-  // background-color: #fff
+  padding: 50px 40px
   .inner
-    max-width: $width
+    max-width: 900px
     margin: 0 auto
   .left, .right
     display: inline-block
@@ -100,7 +82,8 @@ $h3-margin-top = 52px
   .left
     width: 39%
   .right
-    width: 61%
+    // width: 61%
+    width: 60%
   .hero-logo
     width: 215px
     height: 215px
@@ -123,6 +106,15 @@ $h3-margin-top = 52px
     letter-spacing: .1em
     min-width: 8em
     text-align: center
+    padding: 0.75em 2em
+    border-radius: 2em
+    display: inline-block
+    color: #fff
+    transition: all 0.15s ease
+    box-sizing: border-box
+    border-width: 1px
+    border-style: solid
+
     &:first-child
       margin-right: 1em
   .social-buttons
@@ -134,10 +126,9 @@ $h3-margin-top = 52px
       margin-right: 15px
 
 #highlights
-  // background-color: #fff
   padding-bottom: 70px
   .inner
-    max-width: $width
+    max-width: 900px
     margin: 0 auto
     text-align: center
   .point
@@ -147,11 +138,9 @@ $h3-margin-top = 52px
     box-sizing: border-box
     padding: 0 2em
     h2
-      color: $green
       font-size: 1.5em
       font-weight: 400
       margin: 0
       padding: .5em 0
-    p
-      // color: $light
+
 </style>

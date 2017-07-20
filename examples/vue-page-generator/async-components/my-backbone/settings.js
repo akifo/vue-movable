@@ -1,13 +1,14 @@
 export default {
   id: 'my-backbone',
   name: 'Backbone.js',
-  styleObjects: {
+  colors: {
     '0001': {
-      'background-color': '#fff'
+      property: 'background-color',
+      hex: '#fff'
     },
     '0002': {
-      'color': '#7f8c8d',
-      'display': 'flex'
+      property: 'color',
+      hex: '#7f8c8d'
     }
   }
 }

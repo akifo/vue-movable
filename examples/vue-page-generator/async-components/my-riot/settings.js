@@ -1,17 +1,21 @@
 export default {
   id: 'my-riot',
   name: 'Riot.js',
-  styleObjects: {
+  colors: {
     '0001': {
-      'background-color': '#fff'
+      name: 'Background Color',
+      property: 'background-color',
+      hex: '#fff'
     },
     '0002': {
-      'color': '#7f8c8d',
-      'display': 'flex'
+      name: 'Font Color [base]',
+      property: 'color',
+      hex: '#7f8c8d'
     },
     '0003': {
-      'color': '#7f8c8d',
-      'display': 'flex'
+      name: 'Font Color [accent]',
+      property: 'color',
+      hex: '#7f8c8d'
     }
   }
 }

@@ -1,9 +1,12 @@
 <template>
   <div id="edit-modal-index">
     <transition-group name="fade">
-      <component v-for="(item, index) in activeModals" :is="item" v-show="isActiveModal(item)" :key="index"/>
-      <!-- <EditColor v-show="isActiveModal('EditColor')" :key="'EditColor'" /> -->
-      <!-- <EditDesign v-show="isActiveModal('EditDesign')" :key="'EditDesign'" /> -->
+      <component
+        v-for="item in activeModals"
+        :is="item.modalName"
+        :key="item.key"
+        :value="item.key"
+      />
     </transition-group>
   </div>
 </template>
@@ -26,12 +29,6 @@ export default {
   components: {
     EditColor,
     EditDesign
-  },
-
-  methods: {
-    isActiveModal (modalName) {
-      return this.activeModals.some(modal => modal === modalName)
-    }
   }
 
 }
